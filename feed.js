@@ -6,12 +6,12 @@ const { parse } = require('url');
 const xml2js = new convert.Parser();
 const js2xml = new convert.Builder();
 
-const RSS_URL = 'https://www.mangaupdates.com/rss.php';
-const LIST_URL = 'https://www.mangaupdates.com/mylist.html';
+const RSS_URL = 'https://www.mangaupdates.com/rss';
+const LIST_URL = 'https://www.mangaupdates.com/lists/public';
 
 function collectListData(id, list) {
   return new Promise((resolve, reject) => {
-    rp(LIST_URL + "?id=" + id + "&list=" + list)
+    rp(LIST_URL + "/" + list + "/" + id + "/0")
       .then(html => {
         const $ = cheerio.load(html);
         const entries = $('table[id=ptable] > tbody > tr:not(:first-child)');
