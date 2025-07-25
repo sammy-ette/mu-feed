@@ -7,10 +7,11 @@ const xml2js = new convert.Parser();
 const js2xml = new convert.Builder();
 
 const RSS_URL = 'https://www.mangaupdates.com/rss';
-const LIST_URL = 'https://www.mangaupdates.com/lists/public';
+const LIST_URL = 'https://www.mangaupdates.com/lists';
 
 function collectListData(id, list) {
   return new Promise((resolve, reject) => {
+    console.log(LIST_URL + "/" + list + "/" + id + "/0")
     rp(LIST_URL + "/" + list + "/" + id + "/0")
       .then(html => {
         const $ = cheerio.load(html);
